@@ -12,8 +12,10 @@ class ReviewController extends Controller
         return view('index')->with('reviews', $review->with('user')->get()->sortByDesc('created_at'));
     }
     public function show($movie_id) {
+        $reviews = Review::where('movie_id',$movie_id)->get();
         return view('review.show')->with([
             'movie_id' => $movie_id,
+            'reviews' => $reviews,
         ]);
     }
     public function post($movie_id, Request $request, Review $review) {
