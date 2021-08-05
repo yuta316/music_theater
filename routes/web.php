@@ -15,6 +15,10 @@ Auth::routes();
 
 Route::get('/home', 'ReviewController@index');
 
+Route::prefix('user')->group(function () {
+    Route::get('{user}', 'UserController@show');
+});
+
 Route::prefix('review')->group(function () {
     Route::get('{id}/show', 'ReviewController@show');
     Route::post('{id}/post', 'ReviewController@post');
