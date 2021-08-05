@@ -8,6 +8,9 @@ use App\Review;
 
 class ReviewController extends Controller
 {
+    public function index(Review $review) {
+        return view('index')->with('reviews', $review->with('user')->get()->sortByDesc('created_at'));
+    }
     public function show($movie_id) {
         return view('review.show')->with([
             'movie_id' => $movie_id,
