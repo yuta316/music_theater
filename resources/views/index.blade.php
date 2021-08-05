@@ -12,8 +12,7 @@
         [人気作品]
         <div v-for="(d , i) in data" :key="d.id">
                 @{{ d.title }}
-                @{{ d.overview }}
-                <img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path">     
+                <a :href="'review/' + d.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path"></a>  
         </div>
 
         [検索]
@@ -22,8 +21,7 @@
 
             <div v-for="(result , i ) in results" :key="result.id">
                 @{{ result.title }}
-                @{{ result.overview }}
-                <img :src="'https://image.tmdb.org/t/p/w185' + result.poster_path">
+                <a :href="'review/' + result.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + result.poster_path"></a>
             </div>
         </div>
         <script>
