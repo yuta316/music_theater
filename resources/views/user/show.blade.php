@@ -29,6 +29,8 @@
                 @endif
                 <div>Email: {{ $user->email }}</div>
                 <div>登録日: {{ $user->created_at }}</div>
+
+                <button><a href="/user/{{ $user->id }}/edit">編集</a></button>
             </div>
             <div>
               <h3>{{ auth()->user()->name }}さんの最近の口コミ</h3>
