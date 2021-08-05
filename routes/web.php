@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/home', function () {
-    return view('index');
-});
-
 Auth::routes();
+
+Route::get('/home', 'ReviewController@index');
 
 Route::prefix('review')->group(function () {
     Route::get('{id}/show', 'ReviewController@show');

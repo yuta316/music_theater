@@ -18,6 +18,13 @@
             <br>
             <div>
             <p>口コミ</p>
+            @foreach($reviews as $review)
+            <div>
+            {{ $review->title }} / {{ $review->user->name }} / {{ $review->created_at }}
+            <p> {{ $review->body }} </p> 
+            </div>
+            @endforeach
+            <p>--------投稿フォーム---------</p>
             <form method="post" action="/review/{{$movie_id}}/post">
             @csrf
                 <div>タイトル:<input type="text" name="title"></div>

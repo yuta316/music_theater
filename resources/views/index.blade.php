@@ -9,10 +9,22 @@
     </head>
     <body>
         <div id="app">
+        <h1>MovieListener</h1>
+
+        [タイムライン]
+        <div v-for="review in reviews" :key="review.id">
+          <div>
+            <a :href="'review/' + review.movie_id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + review.movie_path" width="50" height="50"></a>
+            @{{ review.movie }}の口コミ
+          </div>
+        @{{ review.title }} / @{{ review.user.name }} / @{{ review.created_at }}
+        <p> @{{ review.body }} </p> 
+        </div>
+  
         [人気作品]
         <div v-for="(d , i) in data" :key="d.id">
-                @{{ d.title }}
-                <a :href="'review/' + d.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path"></a>  
+                <a :href="'review/' + d.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path"></a> 
+                @{{ d.title }} 
         </div>
 
         [検索]
@@ -21,7 +33,6 @@
 
             <div v-for="(result , i ) in results" :key="result.id">
                 @{{ result.title }}
-                <a :href="'review/' + result.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + result.poster_path"></a>
             </div>
         </div>
         <script>
@@ -29,6 +40,7 @@
                 el: '#app',
                 data() {
                     return {
+                        reviews: {} ,
                         keyword: '',
                         results: [],
                         data: '',
@@ -50,17 +62,38 @@
                             }).catch(err => {
                             console.log('err:', err);
                             });
+                    },
+                    getPopularMovie() {
+                        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${this.app_key}&language=ja-JA&page=1`
+                        axios.get(url)
+                        .then(response => {
+                          this.data = response.data.results
+                        }).catch(err => {
+                          console.log('err:', err);
+                          return
+                        });
+                    },
+                    getReviewMovie() {
+                        var reviews = @json($reviews);
+                        for (const [key, value] of Object.entries(reviews)) {
+                        const url = `https://api.themoviedb.org/3/movie/${value.movie_id}?api_key=${this.app_key}&language=ja-JA`
+                        axios.get(url)
+                          .then(response => {
+                            value.movie  = response.data.title
+                            value.movie_path  = response.data.poster_path
+                          }).catch(err => {
+                            console.log('err:', err);
+                            return
+                        });
+                        this.reviews = reviews;
+                    }
                     }
                 },
+                created() {
+                    this.getReviewMovie();
+                },
                 mounted() {
-                    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${this.app_key}&language=ja-JA&page=1`
-                    axios.get(url)
-                        .then(response => {
-                        this.data = response.data.results
-                        }).catch(err => {
-                        console.log('err:', err);
-                        return
-                        });
+                    this.getPopularMovie();
                 }
             })
         </script>
