@@ -9,7 +9,9 @@ use App\Review;
 class ReviewController extends Controller
 {
     public function index(Review $review) {
-        return view('index')->with('reviews', $review->with('user')->get()->sortByDesc('created_at'));
+        return view('index')->with([
+            'reviews' => $review->with('user')->get()->sortByDesc('created_at'),
+            ]);
     }
     public function show(Review $reviews) {
         return view('review.show')->with([

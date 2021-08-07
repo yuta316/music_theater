@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/home', 'ReviewController@index');
 Route::prefix('movie')->group(function () {
-    Route::get('{id}/show', 'MovieController@show');
+    Route::get('{movie_id}/{movie}/show', 'MovieController@show');
 });
 Route::prefix('review')->group(function () {
     Route::get('{reviews}/show', 'ReviewController@show');
