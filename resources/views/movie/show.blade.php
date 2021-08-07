@@ -9,11 +9,30 @@
     </head>
     <body>
         <div id="app">
-            <a href="/movie/{{$review->movie_id}}/show"><img :src="'https://image.tmdb.org/t/p/w185' + data.poster_path" width="200" height="200"></a>
-            <div><b>映画タイトル : </b>@{{ data.title }}</div>
-            <div><b>[{{ $review->title }}]</b> {{ $review->stars }} / 5</div>
-            <div>{{ $review->body }}</div>
-            <div> {{ $review->created_at }}</div>
+            <div>
+                <a :href="data.homepage"><img :src="'https://image.tmdb.org/t/p/w185' + data.poster_path"></a> 
+            </div>
+            <div>タイトル:@{{ data.title }}</div>
+            <div v-if="data.overview">あらすじ:@{{ data.overview }}</div>
+            <div>公開日:@{{ data.release_date }}</div>
+            <br>
+            <div>
+            <p>口コミ</p>
+            @foreach($reviews as $review)
+            <div>
+            {{ $review->title }} / {{ $review->user->name }} / {{ $review->created_at }}
+            <p> {{ $review->body }} </p> 
+            </div>
+            @endforeach
+            <p>--------投稿フォーム---------</p>
+            <form method="post" action="/review/{{$movie_id}}/post">
+            @csrf
+                <div>タイトル:<input type="text" name="title"></div>
+                <div>本文:<input type="text" name="body"></div>
+                <div>評価:<input type="number" step="0.1" min="0" max="5" name="stars"></div>
+                <button type="submit">投稿</button>
+            </form>
+            </div>
         </div>
         </div>
         <script>
@@ -27,7 +46,7 @@
                 },
                 methods: {},
                 mounted() {
-                    var movieId =  '{{ $review->movie_id }}'
+                    var movieId =  window.location.href.split('/')[4]
                     const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.app_key}&language=ja-JA`
                     console.log(url)
                     axios.get(url)
