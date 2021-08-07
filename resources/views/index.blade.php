@@ -14,8 +14,8 @@
         [タイムライン]
         <div v-for="review in reviews" :key="review.id">
           <div>
-            <a :href="'review/' + review.movie_id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + review.movie_path" width="50" height="50"></a>
-            @{{ review.movie }}の口コミ
+            <a :href="'/movie/' + review.movie_id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + review.movie_path" width="50" height="50"></a>
+            <a :href="'/review/' + review.id + '/show'">@{{ review.movie }}の口コミ</a>
           </div>
         @{{ review.title }} / @{{ review.user.name }} / @{{ review.created_at }}
         <p> @{{ review.body }} </p> 
@@ -23,15 +23,15 @@
   
         [人気作品]
         <div v-for="(d , i) in data" :key="d.id">
-                <a :href="'review/' + d.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path"></a> 
+                <a :href="'/movie/' + d.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + d.poster_path"></a> 
                 @{{ d.title }} 
         </div>
 
         [検索]
             <input type="text" v-model="keyword">
             <button type="submit" @click="search">Search</button>
-
             <div v-for="(result , i ) in results" :key="result.id">
+                <a :href="'/movie/' + result.id + '/show'"><img :src="'https://image.tmdb.org/t/p/w185' + result.poster_path"></a> 
                 @{{ result.title }}
             </div>
         </div>
