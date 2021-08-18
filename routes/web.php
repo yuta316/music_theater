@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-//test
+//test2
 
 Route::get('/home', 'ReviewController@index');
 Route::prefix('movie')->group(function () {
