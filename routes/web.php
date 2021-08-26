@@ -20,8 +20,13 @@ Route::prefix('user')->group(function () {
     Route::get('{user}', 'UserController@show');
 });
 
+
+Route::prefix('movie')->group(function () {
+    Route::get('{movie_id}/{movie}/show', 'MovieController@show');
+});
+
 Route::prefix('review')->group(function () {
-    Route::get('{id}/show', 'ReviewController@show');
+    Route::get('{reviews}/show', 'ReviewController@show');
     Route::post('{id}/post', 'ReviewController@post');
 });
 
