@@ -13,21 +13,25 @@
 
 Auth::routes();
 
-Route::get('/home', 'ReviewController@index');
+Route::middleware('auth')->group(function (){
 
-Route::prefix('user')->group(function () {
-    Route::get('{user}/edit', 'UserController@edit');
-    Route::get('{user}', 'UserController@show');
-});
-
-
-Route::prefix('movie')->group(function () {
-    Route::get('{movie_id}/{movie}/show', 'MovieController@show');
-});
-
-Route::prefix('review')->group(function () {
-    Route::get('{reviews}/show', 'ReviewController@show');
-    Route::post('{id}/post', 'ReviewController@post');
+    // Route::get('/home', 'ReviewController@index'); 
+    Route::prefix('user')->group(function () {
+        Route::get('{user}/edit', 'UserController@edit');
+        Route::get('{user}', 'UserController@show');
+    });
+     
+    Route::prefix('movie')->group(function () {
+        Route::get('{movie_id}/{movie}/show', 'MovieController@show');
+    });
+    
+    Route::prefix('review')->group(function () {
+        Route::get('{reviews}/show', 'ReviewController@show');
+        Route::post('{id}/post', 'ReviewController@post');
+    });
+    Route::get('/{any}', function(){
+        return view('app');
+    })->where('any', '.*');
 });
 
 

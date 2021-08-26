@@ -25,6 +25,6 @@ class ReviewController extends Controller
         $input['movie_id'] = (int)$movie_id;
         $review->fill($input)->save();
         $path = "/review/${movie_id}/show";
-        return redirect($path);
+        return back();
     }
 }
