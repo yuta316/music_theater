@@ -10,6 +10,8 @@
     <body>
         <div id="app">
         <h1>MovieListener</h1>
+        <h3><a href="user/{{ auth()->user()->id }}">{{ auth()->user()->name }}</a>さんお疲れ様です</h3>
+
         [タイムライン]
         <div v-for="review in reviews" :key="review.id">
           <div>
