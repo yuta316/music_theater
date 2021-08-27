@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function (){
     });
      
     Route::prefix('movie')->group(function () {
+        Route::get('', 'ReviewController@index'); 
         Route::get('{movie_id}/{movie}/show', 'MovieController@show');
     });
     

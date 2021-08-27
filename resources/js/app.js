@@ -10,6 +10,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios, axios);
+
 const app = new Vue({
     el: '#app',
     render: (h) => h(App), //id="app"の部分にAppコンポーネントを差し込む

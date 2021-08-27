@@ -13,8 +13,8 @@
     <title>映画クチコミサイト|MusicTheater</title>
   </head>
   <body>
-    <div id="app"></div>
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+      <!-- Scripts -->
+      <script src="{{ mix('/js/app.js') }}" defer></script>
+      <div id="app"></div>
   </body>
 </html>
