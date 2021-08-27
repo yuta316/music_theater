@@ -96,8 +96,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var url = "https://api.themoviedb.org/3/movie/popular?api_key=".concat(this.app_key, "&language=ja-JA&page=1");
-      axios.get(url).then(function (response) {
-        _this.movies = response.data.results;
+      axios.get(url).then(function (res) {
+        if (res.status !== 200) {
+          return;
+        }
+
+        _this.movies = res.data.results;
+        console.log(_this.movies);
       })["catch"](function (err) {
         console.log('err:', err);
         return;

@@ -2,7 +2,7 @@
     <div>
 			<el-row>
 				<el-col :span="18">
-        	<div class="movies__list">
+					<div class="movies__list">
 						<h3>最新映画一覧</h3>
 						<el-row style="display: flex; overflow:scroll">
 							<div v-for="movie in movies" :key="movie.id">
@@ -30,7 +30,7 @@
 					</div>
 				</el-col>
 				<el-col :span="6">
-        	<div class="movies__list">
+					<div class="movies__list">
 						<el-row>
 							<el-col :span="16">
 								<el-input placeholder="映画検索" v-model="keyword"></el-input>
@@ -66,26 +66,30 @@
 					</div>
 				</el-col>
 			</el-row>
-    </div>
+		</div>
 </template>
 
 <script>
 export default {
-  name: 'movieIndex',
-  data() {
-    return {
-      reviews: {} ,
-      keyword: '',
-      results: [],
-      movies: '',
+	name: 'movieIndex',
+	data() {
+		return {
+			reviews: {} ,
+			keyword: '',
+			results: [],
+			movies: '',
 			app_key: process.env.MIX_TMDB_APP_KEY,
     };
   },
   methods: {
     getPopularMovie() {
       const url = `https://api.themoviedb.org/3/movie/popular?api_key=${this.app_key}&language=ja-JA&page=1`
-      axios.get(url).then(response => {
-        this.movies = response.data.results
+      axios.get(url).then((res) => {
+				if (res.status !== 200) {
+					return;
+				}
+        this.movies = res.data.results;
+				console.log(this.movies);
       }).catch(err => {
         console.log('err:', err);
         return
