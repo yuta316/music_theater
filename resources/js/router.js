@@ -12,11 +12,13 @@ export default new Router({
         {
             path: '',
             component: Layout,
-        },
-        {
-            path: '/test',
-            component: () => import('./components/ExampleComponent'),
-            name: 'example',
+            children: [
+                {
+                    path: 'movies',
+                    component: () => import('./movies/index'),
+                    name: 'moviePage'
+                }
+            ]
         },
     ]
 })
