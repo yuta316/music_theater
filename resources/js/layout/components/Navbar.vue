@@ -14,7 +14,11 @@
           </router-link>
         </el-menu-item>
         <el-menu-item index="review">口コミランキング</el-menu-item>
-        <el-menu-item index="user">マイページ</el-menu-item>
+        <el-menu-item index="user">
+          <router-link :to="{ name: 'myPage' }">
+            マイページ
+          </router-link>
+        </el-menu-item>
         </el-menu>
     </div>
   </div>

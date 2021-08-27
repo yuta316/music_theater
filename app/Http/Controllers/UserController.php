@@ -8,6 +8,9 @@ use App\User;
 
 class UserController extends Controller
 {
+    public function index() {
+        return auth()->user();
+    }
     public function show(User $user) {
         return view('user.show')->with('user', $user);
     }

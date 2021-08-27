@@ -3754,6 +3754,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Navbar',
   data: function data() {
@@ -102126,9 +102130,16 @@ var render = function() {
               _vm._v("口コミランキング")
             ]),
             _vm._v(" "),
-            _c("el-menu-item", { attrs: { index: "user" } }, [
-              _vm._v("マイページ")
-            ])
+            _c(
+              "el-menu-item",
+              { attrs: { index: "user" } },
+              [
+                _c("router-link", { attrs: { to: { name: "myPage" } } }, [
+                  _vm._v("\n          マイページ\n        ")
+                ])
+              ],
+              1
+            )
           ],
           1
         )
@@ -117901,6 +117912,12 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]); // トップ画面�
         return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./movies/index */ "./resources/js/movies/index.vue"));
       },
       name: 'moviePage'
+    }, {
+      path: 'mypage',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./users/index */ "./resources/js/users/index.vue"));
+      },
+      name: 'myPage'
     }]
   }]
 }));
