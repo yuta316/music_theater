@@ -89,7 +89,6 @@ export default {
 					return;
 				}
         this.movies = res.data.results;
-				console.log(this.movies);
       }).catch(err => {
         console.log('err:', err);
         return

@@ -117909,13 +117909,13 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]); // トップ画面�
     children: [{
       path: 'movies',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./movies/index */ "./resources/js/movies/index.vue"));
+        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./movies/index */ "./resources/js/movies/index.vue"));
       },
       name: 'moviePage'
     }, {
       path: 'mypage',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./users/index */ "./resources/js/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./users/index */ "./resources/js/users/index.vue"));
       },
       name: 'myPage'
     }]

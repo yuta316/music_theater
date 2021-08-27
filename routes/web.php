@@ -15,11 +15,15 @@ Auth::routes();
 
 Route::middleware('auth')->group(function (){
 
-    // Route::get('/home', 'ReviewController@index'); 
     Route::prefix('user')->group(function () {
         Route::get('', 'UserController@index');
         Route::get('{user}/edit', 'UserController@edit');
         Route::get('{user}', 'UserController@show');
+        Route::put('{user}', 'UserController@update');
+    });
+
+    Route::prefix('image')->group(function () {
+        Route::post('', 'ImageController@store');
     });
      
     Route::prefix('movie')->group(function () {
