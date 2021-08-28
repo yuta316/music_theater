@@ -9,6 +9,10 @@ use App\Review;
 
 class MovieController extends Controller
 {
+    public function index($movie_id) {
+        return Review::where('movie_id', $movie_id)->with('user')->get()->sortByDesc('created_at');
+    }
+
     public function show($movie_id, $movie_name) {
         //レビュー検索
         $reviews = Review::where('movie_id',$movie_id)->get();
