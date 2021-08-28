@@ -19,6 +19,11 @@ export default new Router({
                     name: 'moviePage'
                 },
                 {
+                    path: 'movies/:movieId',
+                    component: () => import('./movies/detail'),
+                    name: 'movieDetail'
+                },
+                {
                     path: 'mypage',
                     component: () => import('./users/index'),
                     name: 'myPage'
