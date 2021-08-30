@@ -14,6 +14,13 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 
+// vue-quill-editor
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
+
 const app = new Vue({
     el: '#app',
     render: (h) => h(App), //id="app"の部分にAppコンポーネントを差し込む
