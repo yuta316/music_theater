@@ -14,11 +14,15 @@
 							</el-divider>
 						</el-row>
 						<el-row>
-							<el-col :span="12">{{ review.stars }}/5.0</el-col>
+							<el-col :span="12"><el-rate v-model="review.stars" allow-half disabled show-score></el-rate></el-col>
 							<el-col :span="12">{{ review.created_at }}</el-col>
 						</el-row>
 						<el-row>
-							<p>{{ review.body }}</p>
+							<div class="ql-snow" style="border: 1px solid gray; max-height: 400px; margin: 20px; overflow: scroll;">
+								<div class="ql-editor">
+										<p v-html="review.body"></p>
+								</div>
+							</div>
 						</el-row>
 					</el-col>
 				</el-row>

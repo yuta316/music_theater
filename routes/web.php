@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function (){
     });
 
     Route::prefix('image')->group(function () {
+        Route::post('review', 'ImageController@reviewStore');
         Route::post('', 'ImageController@store');
     });
      
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function (){
     
     Route::prefix('review')->group(function () {
         Route::get('{reviews}/show', 'ReviewController@show');
-        Route::post('{id}/post', 'ReviewController@post');
+        Route::post('{id}', 'ReviewController@post');
     });
     Route::get('/{any}', function(){
         return view('app');

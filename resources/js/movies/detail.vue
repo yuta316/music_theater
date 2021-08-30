@@ -1,24 +1,33 @@
 <template>
-  <div v-if="movie">
-		<movie-component :movie="movie" />
-		<el-row>
-			<el-col :span="6" :offset="15">
-				<el-button type="primary">口コミを投稿する</el-button>
-			</el-col>
-		</el-row>
-		<movie-review-component :reviews="movieReviews" />
-  </div>
+	<div>
+		<review-form-dialog
+			:formVisible="formVisible"
+			@close-form="formVisible = false"
+			@submit-review="submitReview"
+		/>
+		<div v-if="movie">
+			<movie-component :movie="movie" />
+			<el-row>
+				<el-col :span="6" :offset="15">
+					<el-button type="primary" @click="formVisible = true">口コミを投稿する</el-button>
+				</el-col>
+			</el-row>
+			<movie-review-component :reviews="movieReviews" />
+		</div>
+	</div>
 </template>
 
 <script>
-import MovieComponent from './components/MovieComponent.vue';
-import MovieReviewComponent from './components/MovieReviewComponent.vue';
+import MovieComponent from './components/MovieComponent';
+import MovieReviewComponent from './components/MovieReviewComponent';
+import ReviewFormDialog from './dialog/ReviewFormDialog';
 
 export default {
 	name: 'movieDetail',
 	components: {
 		MovieComponent,
 		MovieReviewComponent,
+		ReviewFormDialog
 	},
 	data() {
 		return {
@@ -26,6 +35,7 @@ export default {
 			movieReviews: null,
 			movieId: this.$route.params.movieId,
 			tmdb_app_key: process.env.MIX_TMDB_APP_KEY,
+			formVisible: false,
 		}
 	},
 	methods: {
@@ -51,6 +61,20 @@ export default {
 					console.log('err:', err);
 					return
 				});
+		},
+		submitReview(review) {
+			axios.post('/review/' + this.$route.params.movieId, review).then((res) => {
+				if ((res.status) === 200) {
+					this.$message({
+          showClose: true,
+          message: '口コミを投稿しました',
+          type: 'success'
+        });
+				this.getMovie();
+				this.getMovieReview();
+				this.formVisible = false;
+				}
+			})
 		}
 	},
 	mounted() {
