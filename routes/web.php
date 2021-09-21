@@ -10,13 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::logout();
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware('auth')->group(function (){
-
+    Route::post('/loggedout', function(){
+        auth()->logout();
+    });
+    
     Route::prefix('user')->group(function () {
         Route::get('', 'UserController@index');
         Route::get('{user}/edit', 'UserController@edit');
