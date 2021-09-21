@@ -50,6 +50,8 @@
 
 <script>
 // vue-loading
+import DiffMatchPatch from 'diff-match-patch'
+
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -72,6 +74,7 @@ export default {
 				body: '',
 				stars: 2.5,
 			},
+			imgsCount: 0,
 			editorOption: {
 				theme: 'snow',
 				placeholder: "コメントを入力",
@@ -107,52 +110,76 @@ export default {
 			}
 		}
 	},
-	methods: {
-		handleClose() {
-			this.$emit('close-form');
-		},
-		async LocalToS3() {
-			// imgs[] : imgタグの要素を格納する 
-			const imgs = this.postForm.body.match(/<img.*?>/g);
-			if(!imgs) {
+	watch: {
+		'postForm.body': function(val, oldVal){
+			var img = val.match(/src="data[^"]*"/);
+	
+			// なければそのまま終了.
+			if(!img) {
 				this.postForm.body = this.postForm.body;
 				return;
 			}
 
-			for(var i = 0; i<imgs.length; i++) {
-				var startIndex = this.postForm.body.indexOf(imgs[i]);
-				var endIndex = startIndex + imgs[i].length -1;
-				const imgInfo = this.postForm.body.slice(startIndex, endIndex);
-				const base64 = imgInfo.slice(10, -3);
+			this.$confirm('画像をアップロードしますか?', {
+				confirmButtonText: 'はい',
+				cancelButtonText: '取り消し',
+				type: 'confirm'
+			}).then(() => {
+					this.LocalToS3(img[0])
+        }).catch(() => {
+					this.postForm.body = oldVal;
+          this.$message({
+            type: 'info',
+            message: 'アップロードをキャンセルしました'
+          });          
+        });
+		}
+	},
+	methods: {
+		handleClose() {
+			this.$emit('close-form');
+		},
+		async LocalToS3(img) {
+			this.loading = true;
+			var startIndex = this.postForm.body.indexOf(img); //src=...
+			var endIndex = startIndex + img.length-1;
+			const base64 = this.postForm.body.slice(startIndex+5, endIndex); // data: ...
 
-				// base64文字列をBlob形式のFileに変換する
-				var bin = atob(String(base64.replace(/^.*,/, '')));
-				var buffer = new Uint8Array(bin.length);
-				for (var j = 0; j < bin.length; j++) {
-						buffer[j] = bin.charCodeAt(j);
-				}
-				// Blobを作成
-				var blob = new Blob([buffer.buffer], {
-						type: 'image/png'
-				});
-
-				// Blobをfile形式に変換
-				const imgData = new FormData();
-				imgData.append('image', blob);
-				imgData.append('startIndex', startIndex);
-				imgData.append('endIndex', endIndex);
-				imgData.append('editorContens', this.postForm.body);
-				await axios.post('/image/review', imgData).then((res) => {
-					this.postForm.body = res.data;
-				})
+			// base64文字列をBlob形式のFileに変換する
+			var bin = atob(String(base64.replace(/^.*,/, '')));
+			var buffer = new Uint8Array(bin.length);
+			for (var j = 0; j < bin.length; j++) {
+					buffer[j] = bin.charCodeAt(j);
 			}
+			// Blobを作成
+			var blob = new Blob([buffer.buffer], {
+					type: 'image/png'
+			});
+
+			// Blobをfile形式に変換
+			const imgData = new FormData();
+			imgData.append('image', blob);
+			imgData.append('startIndex', startIndex);
+			imgData.append('endIndex', endIndex);
+			imgData.append('editorContens', this.postForm.body);
+
+			// awsのパスに変換
+			await axios.post('/image/', imgData).then((res) => {
+				this.postForm.body = 
+					this.postForm.body.slice(0,startIndex+5) + 
+					res.data + 
+					this.postForm.body.slice(endIndex, this.postForm.body.length);
+					this.loading = false;
+					this.$message({
+            type: 'success',
+            message: '画像をアップロードしました'
+          });
+			})
 		},
 		submit() {
 			this.loading = true;
-			this.LocalToS3().then(() => {
-				this.$emit('submit-review', this.postForm);
-				this.loading = false;
-			})
+			this.$emit('submit-review', this.postForm);
+			this.loading = false;
 		},
 	},
 }
