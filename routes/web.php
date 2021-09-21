@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::post('/loggedout', function(){
+    auth()->logout();
+});
+
 Route::middleware('auth')->group(function (){
 
     Route::prefix('user')->group(function () {
