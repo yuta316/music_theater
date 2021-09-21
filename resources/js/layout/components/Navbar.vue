@@ -47,7 +47,12 @@ export default {
         console.log(key)
       },
       handleLogout() {
-        axios.post('/loggedout');
+        axios.post('/loggedout')
+          .then(() => {
+            this.$router.push({
+              path: '/login',
+            })
+          })
       }
     }
 }
