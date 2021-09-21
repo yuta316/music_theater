@@ -308,7 +308,7 @@ var render = function() {
                 },
                 [
                   _c("i", { staticClass: "el-icon-search" }),
-                  _vm._v("検索\n\t\t\t\t\t")
+                  _vm._v("検索\n\t\t\t\t")
                 ]
               )
             ]),
@@ -375,7 +375,7 @@ var staticRenderFns = [
       },
       [
         _c("i", { staticClass: "el-icon-video-camera-solid" }),
-        _vm._v("最新映画一覧\n\t\t\t")
+        _vm._v("最新映画一覧\n\t\t")
       ]
     )
   }
