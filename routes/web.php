@@ -13,6 +13,10 @@
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
+
+Route::get('/login/{social}', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::middleware('auth')->group(function (){
     Route::post('/loggedout', function(){
         auth()->logout();
