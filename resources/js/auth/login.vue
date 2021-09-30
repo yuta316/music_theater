@@ -17,7 +17,7 @@
         <el-button type="warning" @click="googleLogin">Googleログイン</el-button>
       </el-col>
       <el-col :span="8">
-
+        <el-button type="warning" @click="lineLogin">Lineログイン</el-button>
       </el-col>
     </el-row>
   </div>
@@ -54,11 +54,6 @@ export default {
         axios.get('/login/google')
           .then((res) => {
             location.href = res.data;
-
-            // window.onload(res.data)
-            // this.$router.push({
-            //   path: '/',
-            // })
           })
           .catch((err) => {
             this.$message({
@@ -66,7 +61,19 @@ export default {
               message: 'ログイン失敗'
             })
           })
-      }
+      },
+      lineLogin() {
+        axios.get('/login/line')
+          .then((res) => {
+            location.href = res.data;
+          })
+          .catch((err) => {
+            this.$message({
+              type: 'info',
+              message: 'ログイン失敗'
+            })
+          })
+      },
     }
 }
 </script>

@@ -33,10 +33,14 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        // 'redirect' => env('APP_URL') . '/login/google/casssllback!!',
-
         'redirect' => 'http://127.0.0.1:8000/login/google/callback',
         
     ],
+
+    'line' => [
+        'client_id' => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect' => 'http://127.0.0.1:8000/login/line/callback',
+    ]
 
 ];
