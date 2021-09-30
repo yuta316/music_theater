@@ -21,6 +21,11 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor)
 
+// font awsome
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+Vue.component('v-icon', Icon)
+
 const app = new Vue({
     el: '#app',
     render: (h) => h(App), //id="app"の部分にAppコンポーネントを差し込む

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Review;
+use App\Like;
 
 class ReviewController extends Controller
 {
@@ -24,5 +25,19 @@ class ReviewController extends Controller
         $review->fill($input)->save();
         $path = "/review/${movie_id}/show";
         return back();
+    }
+    public function like(Review $review){
+        if(!$review->getCheckLikeAttribute()) {
+            Like::create([
+                'review_id' => $review->id,
+                'user_id' => auth()->user()->id,
+            ]);
+        };
+    }
+    public function unlike(Review $review){
+        if($review->getCheckLikeAttribute()) {
+            $like = Like::where('review_id',$review->id)->where('user_id',auth()->user()->id)->first();
+            $like->delete();
+        };
     }
 }

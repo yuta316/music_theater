@@ -14,8 +14,16 @@
 							</el-divider>
 						</el-row>
 						<el-row>
-							<el-col :span="12"><el-rate v-model="review.stars" allow-half disabled show-score></el-rate></el-col>
-							<el-col :span="12">{{ review.created_at }}</el-col>
+							<el-col :span="10"><el-rate v-model="review.stars" allow-half disabled show-score></el-rate></el-col>
+							<el-col :span="10">{{ review.created_at }}</el-col>
+							<el-col :span="4">
+								<el-button v-if="!review.check_like" style="width: 80%;">
+									<v-icon name="heartbeat" @click="like(review.id)"></v-icon>{{ review.count_like }}
+								</el-button>
+								<el-button v-else style="width: 80%;">
+									<v-icon name="heart" @click="unlike(review.id)"></v-icon>{{ review.count_like }}
+								</el-button>
+							</el-col>
 						</el-row>
 						<el-row>
 							<div class="ql-snow" style="border: 1px solid gray; max-height: 400px; margin: 20px; overflow: scroll;">
@@ -37,6 +45,14 @@ export default {
 	props: {
 		reviews: {
 			default: {},
+		}
+	},
+	methods: {
+		like(id) {
+			this.$emit('like', id);
+		},
+		unlike(id) {
+			this.$emit('unlike', id);
 		}
 	}
 }

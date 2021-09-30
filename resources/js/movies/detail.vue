@@ -12,7 +12,10 @@
 					<el-button type="primary" @click="formVisible = true">口コミを投稿する</el-button>
 				</el-col>
 			</el-row>
-			<movie-review-component :reviews="movieReviews" />
+			<movie-review-component :reviews="movieReviews" 
+				@like="like"
+				@unlike="unlike"
+			/>
 		</div>
 	</div>
 </template>
@@ -75,6 +78,18 @@ export default {
 				this.formVisible = false;
 				}
 			})
+		},
+		like(id) {
+			axios.get(`/review/like/${id}`)
+				.then(() => {
+					this.getMovieReview();
+				})
+		},
+		unlike(id) {
+			axios.get(`/review/unlike/${id}`)
+				.then(() => {
+					this.getMovieReview();
+				})
 		}
 	},
 	mounted() {
