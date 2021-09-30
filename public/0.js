@@ -83,11 +83,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MovieReviewComponent',
   props: {
     reviews: {
       "default": {}
+    }
+  },
+  methods: {
+    like: function like(id) {
+      this.$emit('like', id);
+    },
+    unlike: function unlike(id) {
+      this.$emit('unlike', id);
     }
   }
 });
@@ -106,6 +122,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MovieComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/MovieComponent */ "./resources/js/movies/components/MovieComponent.vue");
 /* harmony import */ var _components_MovieReviewComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MovieReviewComponent */ "./resources/js/movies/components/MovieReviewComponent.vue");
 /* harmony import */ var _dialog_ReviewFormDialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog/ReviewFormDialog */ "./resources/js/movies/dialog/ReviewFormDialog.vue");
+//
+//
+//
 //
 //
 //
@@ -185,6 +204,20 @@ __webpack_require__.r(__webpack_exports__);
 
           _this3.formVisible = false;
         }
+      });
+    },
+    like: function like(id) {
+      var _this4 = this;
+
+      axios.get("/review/like/".concat(id)).then(function () {
+        _this4.getMovieReview();
+      });
+    },
+    unlike: function unlike(id) {
+      var _this5 = this;
+
+      axios.get("/review/unlike/".concat(id)).then(function () {
+        _this5.getMovieReview();
       });
     }
   },
@@ -577,7 +610,7 @@ var render = function() {
                           [
                             _c(
                               "el-col",
-                              { attrs: { span: 12 } },
+                              { attrs: { span: 10 } },
                               [
                                 _c("el-rate", {
                                   attrs: {
@@ -597,9 +630,56 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _c("el-col", { attrs: { span: 12 } }, [
+                            _c("el-col", { attrs: { span: 10 } }, [
                               _vm._v(_vm._s(review.created_at))
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "el-col",
+                              { attrs: { span: 4 } },
+                              [
+                                !review.check_like
+                                  ? _c(
+                                      "el-button",
+                                      { staticStyle: { width: "80%" } },
+                                      [
+                                        _c("v-icon", {
+                                          attrs: { name: "heartbeat" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.like(review.id)
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(
+                                          _vm._s(review.count_like) +
+                                            "\n\t\t\t\t\t\t\t\t"
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _c(
+                                      "el-button",
+                                      { staticStyle: { width: "80%" } },
+                                      [
+                                        _c("v-icon", {
+                                          attrs: { name: "heart" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.unlike(review.id)
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(
+                                          _vm._s(review.count_like) +
+                                            "\n\t\t\t\t\t\t\t\t"
+                                        )
+                                      ],
+                                      1
+                                    )
+                              ],
+                              1
+                            )
                           ],
                           1
                         ),
@@ -708,7 +788,8 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("movie-review-component", {
-                attrs: { reviews: _vm.movieReviews }
+                attrs: { reviews: _vm.movieReviews },
+                on: { like: _vm.like, unlike: _vm.unlike }
               })
             ],
             1
