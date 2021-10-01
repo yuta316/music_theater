@@ -12,7 +12,8 @@
 					<el-button type="primary" @click="formVisible = true">口コミを投稿する</el-button>
 				</el-col>
 			</el-row>
-			<movie-review-component :reviews="movieReviews" 
+			<movie-review-component 
+				:reviews="movieReviews" 
 				@like="like"
 				@unlike="unlike"
 			/>
@@ -55,7 +56,6 @@ export default {
 		},
 		getMovieReview() {
 			var url = `/movie/${this.movieId}/review`;
-			console.log(url)
 			axios.get(url)
 				.then(response => {
 					this.movieReviews = response.data;
