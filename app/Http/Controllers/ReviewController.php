@@ -12,6 +12,13 @@ class ReviewController extends Controller
     public function index(Review $review) {
         return $review->with('user')->get()->sortByDesc('created_at');
     }
+
+    public function ranking(Review $review) {
+        // いいねテーブルを集計して並び替え
+        $rank_reviews = Review::withCount('likes')->orderBy('likes_count', 'desc')->with('user')->get();
+        return $rank_reviews;
+    }
+
     public function show(Review $reviews) {
         return view('review.show')->with([
             // 'movie_id' => $movie_id,
