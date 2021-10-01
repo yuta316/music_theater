@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function (){
     });
     
     Route::prefix('review')->group(function () {
+        Route::get('ranking', 'ReviewController@ranking');
         Route::get('{reviews}/show', 'ReviewController@show');
         Route::post('{id}', 'ReviewController@post');
         Route::get('like/{review}', 'ReviewController@like');

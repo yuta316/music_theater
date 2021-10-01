@@ -29,10 +29,15 @@ export default new Router({
                     name: 'movieDetail'
                 },
                 {
+                    path: 'ranking',
+                    component: () => import('./rankings/index'),
+                    name: 'rankingPage'
+                },
+                {
                     path: 'mypage',
                     component: () => import('./users/index'),
                     name: 'myPage'
-                }
+                },
             ]
         },
     ]

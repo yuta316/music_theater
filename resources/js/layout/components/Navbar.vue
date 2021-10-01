@@ -15,7 +15,11 @@
             最新映画
           </router-link>
         </el-menu-item>
-        <el-menu-item index="review">口コミランキング</el-menu-item>
+        <el-menu-item index="review">
+          <router-link :to="{ name: 'rankingPage' }">
+            ランキング
+          </router-link>    
+        </el-menu-item>
         <el-menu-item index="user">
           <router-link :to="{ name: 'myPage' }">
             マイページ
