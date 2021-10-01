@@ -144,6 +144,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -179,7 +180,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var url = "/movie/".concat(this.movieId, "/review");
-      console.log(url);
       axios.get(url).then(function (response) {
         _this2.movieReviews = response.data; // this.getTweet();
       })["catch"](function (err) {

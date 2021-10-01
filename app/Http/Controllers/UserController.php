@@ -9,7 +9,7 @@ use App\User;
 class UserController extends Controller
 {
     public function index() {
-        return auth()->user();
+        return User::where('id', auth()->user()->id)->with('reviews.user', 'likes.review.user')->first();
     }
     public function show(User $user) {
         return view('user.show')->with('user', $user);

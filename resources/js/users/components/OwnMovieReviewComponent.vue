@@ -1,7 +1,7 @@
 <template>
   <div>
 		<div v-if="reviews">
-			<div v-for="review in reviews" :key="review.id" style="border: 2px solid gray; margin: 20px 80px 0 80px; background-color: #fff">
+			<div v-for="review in reviews" :key="review.id" style="border: 1px solid gray; margin: 20px 20px 0 20px; background-color: #fff">
 				<el-row>
 					<el-col :span="4" style="text-align: center; margin-top: 10px;">
 						<img :src="review.user.img_path" width="60%">
@@ -45,7 +45,7 @@ export default {
 	props: {
 		reviews: {
 			default: {},
-		}
+		},
 	},
 	methods: {
 		like(id) {

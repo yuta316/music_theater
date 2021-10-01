@@ -26,7 +26,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');
     }
 
-    function IdentityProviders()
+    public function likes() {
+        return $this->hasMany('App\Like');
+    }
+
+    public function IdentityProviders()
     {
         return $this->hasMany('App\IdentityProvider');
     }
