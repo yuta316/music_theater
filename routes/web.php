@@ -16,9 +16,9 @@ Route::middleware('auth')->group(function (){
     });
     
     Route::prefix('user')->group(function () {
-        Route::get('', 'UserController@index');
+        Route::get('', 'UserController@authIndex');
+        Route::get('{user}', 'UserController@userIndex');
         Route::get('{user}/edit', 'UserController@edit');
-        Route::get('{user}', 'UserController@show');
         Route::put('{user}', 'UserController@update');
     });
 
