@@ -35,8 +35,13 @@ export default new Router({
                 },
                 {
                     path: 'mypage',
-                    component: () => import('./users/index'),
+                    component: () => import('./owns/index'),
                     name: 'myPage'
+                },
+                {
+                    path: 'userpage/:userId',
+                    component: () => import('./others/index'),
+                    name: 'userPage'
                 },
             ]
         },

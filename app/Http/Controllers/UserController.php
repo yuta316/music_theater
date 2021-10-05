@@ -8,9 +8,14 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function authIndex() {
         return User::where('id', auth()->user()->id)->with('reviews.user', 'likes.review.user')->first();
     }
+
+    public function userIndex(User $user) {
+        return User::where('id', $user->id)->with('reviews.user', 'likes.review.user')->first();
+    }
+
     public function show(User $user) {
         return view('user.show')->with('user', $user);
     }
