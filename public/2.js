@@ -70,6 +70,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'myPageList',
@@ -283,6 +285,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -386,122 +392,134 @@ var render = function() {
             "el-col",
             { attrs: { span: 16, offset: 8 } },
             [
-              _vm.user
-                ? _c(
-                    "el-descriptions",
-                    { attrs: { title: "マイページ", column: 3, border: "" } },
-                    [
-                      _c("template", { slot: "extra" }, [
-                        !_vm.user.img_path
-                          ? _c(
-                              "div",
-                              [
-                                _c("el-avatar", {
-                                  attrs: {
-                                    size: 50,
-                                    src:
-                                      "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          : _c(
-                              "div",
-                              [
-                                _c("el-avatar", {
-                                  attrs: { size: 50, src: _vm.user.img_path }
-                                })
-                              ],
-                              1
-                            )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "template",
-                        { slot: "extra" },
+              _c(
+                "el-card",
+                { staticStyle: { margin: "10px", "border-radius": "3px" } },
+                [
+                  _vm.user
+                    ? _c(
+                        "el-descriptions",
+                        {
+                          attrs: { title: "マイページ", column: 3, border: "" }
+                        },
                         [
+                          _c("template", { slot: "extra" }, [
+                            !_vm.user.img_path
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("el-avatar", {
+                                      attrs: {
+                                        size: 50,
+                                        src:
+                                          "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _c(
+                                  "div",
+                                  [
+                                    _c("el-avatar", {
+                                      attrs: {
+                                        size: 50,
+                                        src: _vm.user.img_path
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "el-button",
-                            {
-                              attrs: { type: "primary", size: "small" },
-                              on: {
-                                click: function($event) {
-                                  _vm.editDialogVisible = true
-                                }
-                              }
-                            },
-                            [_vm._v("編集")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-descriptions-item",
-                        [
-                          _c("template", { slot: "label" }, [
-                            _c("i", { staticClass: "el-icon-user" }),
-                            _vm._v(" ユーザ名\n\t\t\t\t\t\t\t")
-                          ]),
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t" +
-                              _vm._s(_vm.user.name) +
-                              "\n\t\t\t\t\t\t"
-                          )
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-descriptions-item",
-                        [
-                          _c("template", { slot: "label" }, [
-                            _c("i", { staticClass: "el-icon-user" }),
-                            _vm._v(" 年齢\n\t\t\t\t\t\t\t")
-                          ]),
+                            "template",
+                            { slot: "extra" },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "primary", size: "small" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.editDialogVisible = true
+                                    }
+                                  }
+                                },
+                                [_vm._v("編集")]
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _vm.user.age
-                            ? _c("div", [_vm._v(_vm._s(_vm.user.age))])
-                            : _c("div", [_vm._v("未設定")])
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-descriptions-item",
-                        [
-                          _c("template", { slot: "label" }, [
-                            _c("i", { staticClass: "el-icon-user" }),
-                            _vm._v(" 性別\n\t\t\t\t\t\t\t")
-                          ]),
+                          _c(
+                            "el-descriptions-item",
+                            [
+                              _c("template", { slot: "label" }, [
+                                _c("i", { staticClass: "el-icon-user" }),
+                                _vm._v(" ユーザ名\n\t\t\t\t\t\t\t")
+                              ]),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(_vm.user.name) +
+                                  "\n\t\t\t\t\t\t"
+                              )
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
-                          _vm.user.sex
-                            ? _c("div", [_vm._v(_vm._s(_vm.user.sex))])
-                            : _c("div", [_vm._v("未設定")])
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-descriptions-item",
-                        [
-                          _c("template", { slot: "label" }, [
-                            _c("i", { staticClass: "el-icon-user" }),
-                            _vm._v(" メールアドレス\n\t\t\t\t\t\t\t")
-                          ]),
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t" +
-                              _vm._s(_vm.user.email) +
-                              "\n\t\t\t\t\t\t"
+                          _c(
+                            "el-descriptions-item",
+                            [
+                              _c("template", { slot: "label" }, [
+                                _c("i", { staticClass: "el-icon-user" }),
+                                _vm._v(" 年齢\n\t\t\t\t\t\t\t")
+                              ]),
+                              _vm._v(" "),
+                              _vm.user.age
+                                ? _c("div", [_vm._v(_vm._s(_vm.user.age))])
+                                : _c("div", [_vm._v("未設定")])
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-descriptions-item",
+                            [
+                              _c("template", { slot: "label" }, [
+                                _c("i", { staticClass: "el-icon-user" }),
+                                _vm._v(" 性別\n\t\t\t\t\t\t\t")
+                              ]),
+                              _vm._v(" "),
+                              _vm.user.sex
+                                ? _c("div", [_vm._v(_vm._s(_vm.user.sex))])
+                                : _c("div", [_vm._v("未設定")])
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-descriptions-item",
+                            [
+                              _c("template", { slot: "label" }, [
+                                _c("i", { staticClass: "el-icon-user" }),
+                                _vm._v(" メールアドレス\n\t\t\t\t\t\t\t")
+                              ]),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(_vm.user.email) +
+                                  "\n\t\t\t\t\t\t"
+                              )
+                            ],
+                            2
                           )
                         ],
                         2
                       )
-                    ],
-                    2
-                  )
-                : _vm._e()
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
@@ -822,10 +840,22 @@ var render = function() {
                           }
                         },
                         [
-                          _c("own-movie-review-component", {
-                            attrs: { reviews: _vm.ownReviews },
-                            on: { like: _vm.like, unlike: _vm.unlike }
-                          })
+                          _c(
+                            "el-card",
+                            {
+                              staticStyle: {
+                                margin: "10px",
+                                "border-radius": "3px"
+                              }
+                            },
+                            [
+                              _c("own-movie-review-component", {
+                                attrs: { reviews: _vm.ownReviews },
+                                on: { like: _vm.like, unlike: _vm.unlike }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -846,13 +876,25 @@ var render = function() {
                               }
                             },
                             [
-                              _c("like-movie-review-component", {
-                                attrs: {
-                                  likes: _vm.likeReviews,
-                                  userId: _vm.user.id
+                              _c(
+                                "el-card",
+                                {
+                                  staticStyle: {
+                                    margin: "10px",
+                                    "border-radius": "3px"
+                                  }
                                 },
-                                on: { like: _vm.like, unlike: _vm.unlike }
-                              })
+                                [
+                                  _c("like-movie-review-component", {
+                                    attrs: {
+                                      likes: _vm.likeReviews,
+                                      userId: _vm.user.id
+                                    },
+                                    on: { like: _vm.like, unlike: _vm.unlike }
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
                           )

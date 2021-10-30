@@ -1,27 +1,32 @@
 <template>
 	<div>
-		<div>
-			<h4 style="color: #7db4e6; padding: 20px;　background: #fff; border-left: solid 5px #7db4e6;">
-				<i class="el-icon-video-camera-solid"></i>最新映画一覧
-			</h4>
-			<movie-list :propedMovies="movies"></movie-list>
-		</div>
-		<div style="background: #fff;">
-			<el-row>
-				<el-col :span="8">
-					<h4 style="color: #7db4e6;　padding: 20px; border-left: solid 5px #7db4e6;">
-					<i class="el-icon-search"></i>検索
-					</h4>
-				</el-col>
-				<el-col :span="12">
-					<el-input placeholder="映画検索" v-model="keyword" style="padding-top: 20px"></el-input>
-				</el-col>
-				<el-col :span="4">
-					<el-button type="primary" @click="search" style="margin-top: 20px">検索</el-button>
-				</el-col>
-			</el-row>
-			<movie-list :propedMovies="results"></movie-list>
-		</div>
+    <el-card style="margin: 5px; border-radius: 3px;">
+      <div>
+        <h5 style="color: #7db4e6; padding: 20px;　background: #fff; border-left: solid 3px #7db4e6;">
+          <i class="el-icon-video-camera-solid"></i>最新映画一覧
+        </h5>
+        <movie-list :propedMovies="movies"></movie-list>
+      </div>
+    </el-card>
+    
+    <el-card style="margin: 5px; border-radius: 3px;">
+      <div style="background: #fff;">
+        <el-row>
+          <el-col :span="8">
+            <h5 style="color: #7db4e6;　padding: 20px; border-left: solid 5px #7db4e6;">
+            <i class="el-icon-search"></i>検索
+            </h5>
+          </el-col>
+          <el-col :span="12">
+            <el-input placeholder="映画検索" v-model="keyword" style="padding-top: 20px"></el-input>
+          </el-col>
+          <el-col :span="4">
+            <el-button type="primary" @click="search" style="margin-top: 20px">検索</el-button>
+          </el-col>
+        </el-row>
+        <movie-list :propedMovies="results"></movie-list>
+      </div>
+    </el-card>
 	</div>
 </template>
 

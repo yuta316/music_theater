@@ -1,9 +1,9 @@
 <template>
   <div>
 		<el-row>
-			<h4 style="color: #7db4e6; padding: 20px;　background: #fff; border-left: solid 5px #7db4e6;">
+			<h5 style="color: #7db4e6; padding: 20px;　background: #fff; border-left: solid 5px #7db4e6;">
 				<i class="el-icon-video-camera-solid"></i> {{movie.title}}
-			</h4>
+			</h5>
 		</el-row>
 		<el-row>
 			<el-col :span="8" style="text-align: center;">
