@@ -1,38 +1,44 @@
 <template>
   <div>
-    <div class="main-container">
+    <div style="background-color: white; width: 100%">
+      <img 
+        src="https://movietheater.s3.ap-northeast-1.amazonaws.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88+2021-10-05+20.51.27.png"
+        style="width: 100%;"
+      >
         <el-menu
-        default-active=1
-        mode="horizontal"
-        @select="handleSelect"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#308aff"
-        style="text-align: right;"
+          default-active="1"
+          @open="handleOpen"
+          @close="handleClose"
         >
-        <el-menu-item index="movie">
-          <router-link :to="{ name: 'moviePage' }">
-            最新映画
-          </router-link>
-        </el-menu-item>
-        <el-menu-item index="review">
-          <router-link :to="{ name: 'rankingPage' }">
-            ランキング
-          </router-link>    
-        </el-menu-item>
-        <el-menu-item index="user">
-          <router-link :to="{ name: 'myPage' }">
-            マイページ
-          </router-link>
-        </el-menu-item>
-          <el-button 
-            type="info"
-            round
-            style="margin-top: 10px;"
-            @click="handleLogout"
-          >
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+                <router-link :to="{ name: 'moviePage' }">
+                  最新映画
+                </router-link>
+            </template>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+                <router-link :to="{ name: 'rankingPage' }">
+                  ランキング
+                </router-link>   
+            </template>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+                <router-link :to="{ name: 'myPage' }">
+                  マイページ
+                </router-link> 
+            </template>
+          </el-submenu>
+        </el-menu>
+        <el-menu @click="handleLogout">
+          <template>
             ログアウト
-          </el-button>
+          </template>
         </el-menu>
     </div>
   </div>
@@ -57,6 +63,12 @@ export default {
               path: '/login',
             })
           })
+      },
+      handleOpen() {
+
+      },
+      handleClose() {
+
       }
     }
 }

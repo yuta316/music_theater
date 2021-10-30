@@ -91,6 +91,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'MovieReviewComponent',
   props: {
@@ -122,6 +128,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MovieComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/MovieComponent */ "./resources/js/movies/components/MovieComponent.vue");
 /* harmony import */ var _components_MovieReviewComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MovieReviewComponent */ "./resources/js/movies/components/MovieReviewComponent.vue");
 /* harmony import */ var _dialog_ReviewFormDialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog/ReviewFormDialog */ "./resources/js/movies/dialog/ReviewFormDialog.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -469,7 +480,7 @@ var render = function() {
     [
       _c("el-row", [
         _c(
-          "h4",
+          "h5",
           {
             staticStyle: {
               color: "#7db4e6",
@@ -554,166 +565,176 @@ var render = function() {
     _vm.reviews
       ? _c(
           "div",
-          _vm._l(_vm.reviews, function(review) {
-            return _c(
-              "div",
-              {
-                key: review.id,
-                staticStyle: {
-                  border: "2px solid gray",
-                  margin: "20px 80px 0 80px",
-                  "background-color": "#fff"
-                }
-              },
-              [
-                _c(
-                  "el-row",
-                  [
-                    _c(
-                      "el-col",
-                      {
-                        staticStyle: {
-                          "text-align": "center",
-                          "margin-top": "10px"
+          [
+            _vm._l(_vm.reviews, function(review) {
+              return _c(
+                "div",
+                {
+                  key: review.id,
+                  staticStyle: {
+                    border: "2px solid gray",
+                    margin: "20px 80px 0 80px",
+                    "background-color": "#fff"
+                  }
+                },
+                [
+                  _c(
+                    "el-row",
+                    [
+                      _c(
+                        "el-col",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            "margin-top": "10px"
+                          },
+                          attrs: { span: 4 }
                         },
-                        attrs: { span: 4 }
-                      },
-                      [
-                        _c("img", {
-                          attrs: { src: review.user.img_path, width: "60%" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", [_vm._v(_vm._s(review.user.name))])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-col",
-                      { attrs: { span: 20 } },
-                      [
-                        _c(
-                          "el-row",
-                          [
-                            _c(
-                              "el-divider",
-                              { attrs: { "content-position": "left" } },
-                              [_c("h4", [_vm._v(_vm._s(review.title))])]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "el-row",
-                          [
-                            _c(
-                              "el-col",
-                              { attrs: { span: 10 } },
-                              [
-                                _c("el-rate", {
-                                  attrs: {
-                                    "allow-half": "",
-                                    disabled: "",
-                                    "show-score": ""
-                                  },
-                                  model: {
-                                    value: review.stars,
-                                    callback: function($$v) {
-                                      _vm.$set(review, "stars", $$v)
-                                    },
-                                    expression: "review.stars"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("el-col", { attrs: { span: 10 } }, [
-                              _vm._v(_vm._s(review.created_at))
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "el-col",
-                              { attrs: { span: 4 } },
-                              [
-                                !review.check_like
-                                  ? _c(
-                                      "el-button",
-                                      { staticStyle: { width: "80%" } },
-                                      [
-                                        _c("v-icon", {
-                                          attrs: { name: "heartbeat" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.like(review.id)
-                                            }
-                                          }
-                                        }),
-                                        _vm._v(
-                                          _vm._s(review.count_like) +
-                                            "\n\t\t\t\t\t\t\t\t"
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _c(
-                                      "el-button",
-                                      { staticStyle: { width: "80%" } },
-                                      [
-                                        _c("v-icon", {
-                                          attrs: { name: "heart" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.unlike(review.id)
-                                            }
-                                          }
-                                        }),
-                                        _vm._v(
-                                          _vm._s(review.count_like) +
-                                            "\n\t\t\t\t\t\t\t\t"
-                                        )
-                                      ],
-                                      1
-                                    )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("el-row", [
+                        [
+                          _c("img", {
+                            attrs: { src: review.user.img_path, width: "60%" }
+                          }),
+                          _vm._v(" "),
+                          _c("div", [_vm._v(_vm._s(review.user.name))])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 20 } },
+                        [
                           _c(
-                            "div",
-                            {
-                              staticClass: "ql-snow",
-                              staticStyle: {
-                                border: "1px solid gray",
-                                "max-height": "400px",
-                                margin: "20px",
-                                overflow: "scroll"
-                              }
-                            },
+                            "el-row",
                             [
-                              _c("div", { staticClass: "ql-editor" }, [
-                                _c("p", {
-                                  domProps: { innerHTML: _vm._s(review.body) }
-                                })
-                              ])
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
+                              _c(
+                                "el-divider",
+                                { attrs: { "content-position": "left" } },
+                                [_c("h4", [_vm._v(_vm._s(review.title))])]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-row",
+                            [
+                              _c(
+                                "el-col",
+                                { attrs: { span: 10 } },
+                                [
+                                  _c("el-rate", {
+                                    attrs: {
+                                      "allow-half": "",
+                                      disabled: "",
+                                      "show-score": ""
+                                    },
+                                    model: {
+                                      value: review.stars,
+                                      callback: function($$v) {
+                                        _vm.$set(review, "stars", $$v)
+                                      },
+                                      expression: "review.stars"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("el-col", { attrs: { span: 10 } }, [
+                                _vm._v(_vm._s(review.created_at))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "el-col",
+                                { attrs: { span: 4 } },
+                                [
+                                  !review.check_like
+                                    ? _c(
+                                        "el-button",
+                                        { staticStyle: { width: "80%" } },
+                                        [
+                                          _c("v-icon", {
+                                            attrs: { name: "heartbeat" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.like(review.id)
+                                              }
+                                            }
+                                          }),
+                                          _vm._v(
+                                            _vm._s(review.count_like) +
+                                              "\n\t\t\t\t\t\t\t\t"
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _c(
+                                        "el-button",
+                                        { staticStyle: { width: "80%" } },
+                                        [
+                                          _c("v-icon", {
+                                            attrs: { name: "heart" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.unlike(review.id)
+                                              }
+                                            }
+                                          }),
+                                          _vm._v(
+                                            _vm._s(review.count_like) +
+                                              "\n\t\t\t\t\t\t\t\t"
+                                          )
+                                        ],
+                                        1
+                                      )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("el-row", [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "ql-snow",
+                                staticStyle: {
+                                  border: "1px solid gray",
+                                  "max-height": "400px",
+                                  margin: "20px",
+                                  overflow: "scroll"
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "ql-editor" }, [
+                                  _c("p", {
+                                    domProps: { innerHTML: _vm._s(review.body) }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _vm.reviews.length == 0
+              ? _c(
+                  "div",
+                  { staticStyle: { "text-align": "center", margin: "5px" } },
+                  [_vm._v("\n\t\t\t\tまだ口コミは投稿されていません。\n\t\t\t")]
                 )
-              ],
-              1
-            )
-          }),
-          0
+              : _vm._e()
+          ],
+          2
         )
       : _vm._e()
   ])
@@ -757,38 +778,51 @@ var render = function() {
         ? _c(
             "div",
             [
-              _c("movie-component", { attrs: { movie: _vm.movie } }),
-              _vm._v(" "),
               _c(
-                "el-row",
-                [
-                  _c(
-                    "el-col",
-                    { attrs: { span: 6, offset: 15 } },
-                    [
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { type: "primary" },
-                          on: {
-                            click: function($event) {
-                              _vm.formVisible = true
-                            }
-                          }
-                        },
-                        [_vm._v("口コミを投稿する")]
-                      )
-                    ],
-                    1
-                  )
-                ],
+                "el-card",
+                { staticStyle: { margin: "10px", "border-radius": "3px" } },
+                [_c("movie-component", { attrs: { movie: _vm.movie } })],
                 1
               ),
               _vm._v(" "),
-              _c("movie-review-component", {
-                attrs: { reviews: _vm.movieReviews },
-                on: { like: _vm.like, unlike: _vm.unlike }
-              })
+              _c(
+                "el-card",
+                { staticStyle: { margin: "40px", "border-radius": "3px" } },
+                [
+                  _c(
+                    "el-row",
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { span: 6, offset: 18 } },
+                        [
+                          _c(
+                            "el-button",
+                            {
+                              attrs: { type: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.formVisible = true
+                                }
+                              }
+                            },
+                            [_vm._v("口コミを投稿する")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("movie-review-component", {
+                    staticStyle: { "max-height": "400px", overflow: "scroll" },
+                    attrs: { reviews: _vm.movieReviews },
+                    on: { like: _vm.like, unlike: _vm.unlike }
+                  })
+                ],
+                1
+              )
             ],
             1
           )

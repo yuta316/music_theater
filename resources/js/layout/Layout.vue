@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="main-container">
-      <nav-bar></nav-bar>
-      <app-main></app-main>
+      <el-row>
+        <el-col :span="4">
+          <nav-bar></nav-bar>
+        </el-col> 
+        <el-col :span="20">
+          <app-main></app-main>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>

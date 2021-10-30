@@ -2,10 +2,10 @@
 	<div>
 		<el-row>
 			<el-col :span="18">
-				<my-page-list
-					:defaultUser="user"
-					@update-mypage="updateMypage"
-				></my-page-list>
+					<my-page-list
+						:defaultUser="user"
+						@update-mypage="updateMypage"
+					></my-page-list>
 			</el-col>
 		</el-row>
 		<el-row>
@@ -13,23 +13,27 @@
 				<el-tabs v-model="activeName">
 					<el-tab-pane label="レビュー" name="reviews">
 					<div style="max-height: 500px; overflow: scroll;">
+						<el-card style="margin: 10px; border-radius: 3px;">
 							<own-movie-review-component
 								:reviews="ownReviews"
 								@like="like"
 								@unlike="unlike"
 							>
 							</own-movie-review-component>
+						</el-card>
 						</div>
 					</el-tab-pane>
 					<el-tab-pane label="いいね" name="second">
 						<div style="max-height: 500px; overflow: scroll;" v-if="user">
-							<like-movie-review-component
-									:likes="likeReviews"
-									:userId="user.id"
-									@like="like"
-									@unlike="unlike"
-								>
-							</like-movie-review-component>
+							<el-card style="margin: 10px; border-radius: 3px;">
+								<like-movie-review-component
+										:likes="likeReviews"
+										:userId="user.id"
+										@like="like"
+										@unlike="unlike"
+									>
+								</like-movie-review-component>
+							</el-card>
 						</div>
 					</el-tab-pane>
 					<el-tab-pane label="Role" name="third">Role</el-tab-pane>

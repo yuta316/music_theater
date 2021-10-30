@@ -6,17 +6,22 @@
 			@submit-review="submitReview"
 		/>
 		<div v-if="movie">
-			<movie-component :movie="movie" />
-			<el-row>
-				<el-col :span="6" :offset="15">
-					<el-button type="primary" @click="formVisible = true">口コミを投稿する</el-button>
-				</el-col>
-			</el-row>
-			<movie-review-component 
-				:reviews="movieReviews" 
-				@like="like"
-				@unlike="unlike"
-			/>
+			<el-card style="margin: 10px; border-radius: 3px;">
+				<movie-component :movie="movie" />
+			</el-card>
+			<el-card style="margin: 40px; border-radius: 3px;">
+				<el-row>
+					<el-col :span="6" :offset="18">
+						<el-button type="primary" @click="formVisible = true">口コミを投稿する</el-button>
+					</el-col>
+				</el-row>
+				<movie-review-component 
+					:reviews="movieReviews" 
+					@like="like"
+					@unlike="unlike"
+					style="max-height: 400px; overflow: scroll;"
+				/>
+			</el-card>
 		</div>
 	</div>
 </template>
@@ -36,6 +41,7 @@ export default {
 	data() {
 		return {
 			movie: null,
+
 			movieReviews: null,
 			movieId: this.$route.params.movieId,
 			tmdb_app_key: process.env.MIX_TMDB_APP_KEY,

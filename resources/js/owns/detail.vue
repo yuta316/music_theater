@@ -9,6 +9,7 @@
 
 		<el-row>
 			<el-col :span="16" :offset="8">
+				<el-card style="margin: 10px; border-radius: 3px;">
 				<el-descriptions title="マイページ" :column="3" border v-if="user">
 					<template slot="extra">
 						<div v-if="!user.img_path">
@@ -52,6 +53,7 @@
 							{{ user.email }}
 						</el-descriptions-item>
 					</el-descriptions>
+				</el-card>
 			</el-col>
 		</el-row>
 		

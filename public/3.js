@@ -95,6 +95,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'movieIndex',
@@ -278,108 +283,117 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("movie-list", { attrs: { propedMovies: _vm.movies } })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticStyle: { background: "#fff" } },
-      [
-        _c(
-          "el-row",
-          [
-            _c("el-col", { attrs: { span: 8 } }, [
+  return _c(
+    "div",
+    [
+      _c(
+        "el-card",
+        { staticStyle: { margin: "5px", "border-radius": "3px" } },
+        [
+          _c(
+            "div",
+            [
               _c(
-                "h4",
+                "h5",
                 {
                   staticStyle: {
                     color: "#7db4e6",
                     padding: "20px",
-                    "border-left": "solid 5px #7db4e6"
+                    background: "#fff",
+                    "border-left": "solid 3px #7db4e6"
                   }
                 },
                 [
-                  _c("i", { staticClass: "el-icon-search" }),
-                  _vm._v("検索\n\t\t\t\t")
+                  _c("i", { staticClass: "el-icon-video-camera-solid" }),
+                  _vm._v("最新映画一覧\n        ")
                 ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "el-col",
-              { attrs: { span: 12 } },
-              [
-                _c("el-input", {
-                  staticStyle: { "padding-top": "20px" },
-                  attrs: { placeholder: "映画検索" },
-                  model: {
-                    value: _vm.keyword,
-                    callback: function($$v) {
-                      _vm.keyword = $$v
-                    },
-                    expression: "keyword"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-col",
-              { attrs: { span: 4 } },
-              [
-                _c(
-                  "el-button",
-                  {
-                    staticStyle: { "margin-top": "20px" },
-                    attrs: { type: "primary" },
-                    on: { click: _vm.search }
-                  },
-                  [_vm._v("検索")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("movie-list", { attrs: { propedMovies: _vm.results } })
-      ],
-      1
-    )
-  ])
+              ),
+              _vm._v(" "),
+              _c("movie-list", { attrs: { propedMovies: _vm.movies } })
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "el-card",
+        { staticStyle: { margin: "5px", "border-radius": "3px" } },
+        [
+          _c(
+            "div",
+            { staticStyle: { background: "#fff" } },
+            [
+              _c(
+                "el-row",
+                [
+                  _c("el-col", { attrs: { span: 8 } }, [
+                    _c(
+                      "h5",
+                      {
+                        staticStyle: {
+                          color: "#7db4e6",
+                          padding: "20px",
+                          "border-left": "solid 5px #7db4e6"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "el-icon-search" }),
+                        _vm._v("検索\n            ")
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("el-input", {
+                        staticStyle: { "padding-top": "20px" },
+                        attrs: { placeholder: "映画検索" },
+                        model: {
+                          value: _vm.keyword,
+                          callback: function($$v) {
+                            _vm.keyword = $$v
+                          },
+                          expression: "keyword"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 4 } },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          staticStyle: { "margin-top": "20px" },
+                          attrs: { type: "primary" },
+                          on: { click: _vm.search }
+                        },
+                        [_vm._v("検索")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("movie-list", { attrs: { propedMovies: _vm.results } })
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "h4",
-      {
-        staticStyle: {
-          color: "#7db4e6",
-          padding: "20px",
-          background: "#fff",
-          "border-left": "solid 5px #7db4e6"
-        }
-      },
-      [
-        _c("i", { staticClass: "el-icon-video-camera-solid" }),
-        _vm._v("最新映画一覧\n\t\t")
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -35,6 +35,12 @@
 					</el-col>
 				</el-row>
 			</div>
+			<div
+			  v-if="reviews.length == 0"
+				style="text-align: center; margin: 5px"
+			>
+				まだ口コミは投稿されていません。
+			</div>
 		</div>
 	</div>
 </template>
