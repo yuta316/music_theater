@@ -41,6 +41,13 @@ Route::middleware('auth')->group(function (){
         Route::get('like/{review}', 'ReviewController@like');
         Route::get('unlike/{review}', 'ReviewController@unlike');
     });
+
+    Route::prefix('circle')->group(function () {
+        Route::get('', 'CircleController@index');
+        Route::get('{circle}', 'CircleController@show')->middleware('circle.show');
+        Route::post('', 'CircleController@store');
+    });
+
     Route::get('/{any}', function(){
         return view('app');
     })->where('any', '.*');

@@ -26,7 +26,15 @@
                 </router-link>   
             </template>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+                <router-link :to="{ name: 'circlePage' }">
+                  サークル
+                </router-link>   
+            </template>
+          </el-submenu>
+          <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-location"></i>
                 <router-link :to="{ name: 'myPage' }">
@@ -35,11 +43,11 @@
             </template>
           </el-submenu>
         </el-menu>
-        <el-menu @click="handleLogout">
+        <el-button @click="handleLogout">
           <template>
             ログアウト
           </template>
-        </el-menu>
+        </el-button>
     </div>
   </div>
 </template>
