@@ -41,7 +41,6 @@ export default {
 	data() {
 		return {
 			movie: null,
-
 			movieReviews: null,
 			movieId: this.$route.params.movieId,
 			tmdb_app_key: process.env.MIX_TMDB_APP_KEY,
