@@ -38,6 +38,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'circleList',
   props: {
@@ -53,6 +59,23 @@ __webpack_require__.r(__webpack_exports__);
     showDetail: function showDetail(circleId) {
       this.$router.push({
         path: '/circles/' + circleId
+      });
+    },
+    wantJoin: function wantJoin(circleId) {
+      var _this = this;
+
+      axios.post("/circle/".concat(circleId, "/join")).then(function (res) {
+        _this.$message({
+          message: '参加申請を送信しました',
+          type: 'success'
+        });
+      })["catch"](function (err) {
+        console.log();
+
+        _this.$message({
+          message: '既に参加済み/申請済みです',
+          type: 'error'
+        });
       });
     }
   }
@@ -268,18 +291,35 @@ var render = function() {
                           attrs: { src: circle.img_path, width: "80%" }
                         }),
                         _vm._v(" "),
-                        _c(
-                          "el-button",
-                          {
-                            staticStyle: { "margin-top": "4px" },
-                            on: {
-                              click: function($event) {
-                                return _vm.showDetail(circle.id)
-                              }
-                            }
-                          },
-                          [_vm._v("詳細")]
-                        )
+                        !circle.check_join_status && !circle.check_join
+                          ? _c(
+                              "el-button",
+                              {
+                                staticStyle: { "margin-top": "4px" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.wantJoin(circle.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("参加申請\n\t\t\t\t\t\t")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        circle.check_join
+                          ? _c(
+                              "el-button",
+                              {
+                                staticStyle: { "margin-top": "4px" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showDetail(circle.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("詳細")]
+                            )
+                          : _vm._e()
                       ],
                       1
                     ),

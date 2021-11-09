@@ -8,10 +8,16 @@
 				<el-row>
 					<el-col :span="8" style="text-align: center;">
 						<img :src="circle.img_path" width="80%" style="aspect-ratio: 1 / 1;">
-
 						<el-button
-						 　@click="showDetail(circle.id)"
-						 　style="margin-top: 4px;"
+						　@click="wantJoin(circle.id)"
+						　style="margin-top: 4px;"
+						 v-if="!circle.check_join_status && !circle.check_join"
+						>参加申請
+						</el-button>
+						<el-button
+						　@click="showDetail(circle.id)"
+						　style="margin-top: 4px;"
+							v-if="circle.check_join"
 						>詳細</el-button>
 					</el-col>
 					<el-col :span="15" :offset="1">
@@ -47,6 +53,22 @@ export default {
 			this.$router.push({
 				path: '/circles/' + circleId,
 			})
+		},
+		wantJoin(circleId){
+			axios.post(`/circle/${circleId}/join`)
+				.then((res) => {
+					this.$message({
+						message: '参加申請を送信しました',
+						type: 'success',
+					})
+				})
+				.catch((err) => {
+					console.log()
+					this.$message({
+						message: '既に参加済み/申請済みです',
+						type: 'error',
+					})
+				})
 		}
 	},
 }
