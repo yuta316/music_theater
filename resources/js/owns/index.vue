@@ -1,11 +1,12 @@
 <template>
-	<div>
+	<div v-loading="loading">
+		<el-card>
 		<el-row>
-			<el-col :span="18">
-					<my-page-list
-						:defaultUser="user"
-						@update-mypage="updateMypage"
-					></my-page-list>
+			<el-col :span="24">
+				<my-page-list
+					:defaultUser="user"
+					@update-mypage="updateMypage"
+				></my-page-list>
 			</el-col>
 		</el-row>
 		<el-row>
@@ -41,6 +42,7 @@
 				</el-tabs>
 			</el-col>
 		</el-row>
+		</el-card>
 	</div>
 </template>
 
@@ -58,6 +60,7 @@ export default {
 	},
 	data() {
 		return {
+			loading: false,
 			user: null,
 			activeName: 'reviews',
 			ownReviews: {},
@@ -66,6 +69,7 @@ export default {
 	},
 	methods: {
 		getUser() {
+			this.loading = true;
 			axios.get('/user').then((res) => {
 				if (res.status !== 200) {
 					return;
@@ -73,6 +77,7 @@ export default {
 				this.user = res.data;
 				this.ownReviews = res.data.reviews;
 				this.likeReviews = res.data.likes;
+				this.loading=false;
       }).catch(err => {
         console.log('err:', err);
         return

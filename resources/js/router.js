@@ -16,10 +16,11 @@ export default new Router({
     },
     {
     path: '/',
+    name: 'default',
     component: Layout,
     children: [
       {
-          path: 'movies',
+          path: '',
           component: () => import('./movies/index'),
           name: 'moviePage'
       },

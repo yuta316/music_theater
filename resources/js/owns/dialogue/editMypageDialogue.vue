@@ -3,6 +3,7 @@
 		title="ユーザ情報の変更"
 		:visible.sync="dialogVisible"
 		width="70%"
+		:before-close="handleClose"
 	>
 		<el-form :model="user" v-if="user">
 			<el-row>
@@ -88,6 +89,9 @@ export default {
 		}
 	},
 	methods: {
+		handleClose() {
+			this.$emit('close-form');
+		},
 		addAttachments(response, _){
 			this.filePath = response;
 		},

@@ -174,6 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'editMypageDialogue',
   props: {
@@ -201,6 +202,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    handleClose: function handleClose() {
+      this.$emit('close-form');
+    },
     addAttachments: function addAttachments(response, _) {
       this.filePath = response;
     },
@@ -289,6 +293,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -301,6 +307,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      loading: false,
       user: null,
       activeName: 'reviews',
       ownReviews: {},
@@ -311,6 +318,7 @@ __webpack_require__.r(__webpack_exports__);
     getUser: function getUser() {
       var _this = this;
 
+      this.loading = true;
       axios.get('/user').then(function (res) {
         if (res.status !== 200) {
           return;
@@ -319,6 +327,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.user = res.data;
         _this.ownReviews = res.data.reviews;
         _this.likeReviews = res.data.likes;
+        _this.loading = false;
       })["catch"](function (err) {
         console.log('err:', err);
         return;
@@ -378,10 +387,10 @@ var render = function() {
       _c("edit-mypage-dialogue", {
         attrs: { editDialogVisible: _vm.editDialogVisible, editUser: _vm.user },
         on: {
-          action: function($event) {
+          "update-mypage": _vm.updateMypage,
+          "close-form": function($event) {
             _vm.editDialogVisible = false
-          },
-          "update-mypage": _vm.updateMypage
+          }
         }
       }),
       _vm._v(" "),
@@ -390,11 +399,11 @@ var render = function() {
         [
           _c(
             "el-col",
-            { attrs: { span: 16, offset: 8 } },
+            { attrs: { span: 24, offset: 0 } },
             [
               _c(
                 "el-card",
-                { staticStyle: { margin: "10px", "border-radius": "3px" } },
+                { staticStyle: { margin: "10px", "border-radius": "30px" } },
                 [
                   _vm.user
                     ? _c(
@@ -558,7 +567,8 @@ var render = function() {
       attrs: {
         title: "ユーザ情報の変更",
         visible: _vm.dialogVisible,
-        width: "70%"
+        width: "70%",
+        "before-close": _vm.handleClose
       },
       on: {
         "update:visible": function($event) {
@@ -789,85 +799,62 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
     [
       _c(
-        "el-row",
+        "el-card",
         [
           _c(
-            "el-col",
-            { attrs: { span: 18 } },
-            [
-              _c("my-page-list", {
-                attrs: { defaultUser: _vm.user },
-                on: { "update-mypage": _vm.updateMypage }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-row",
-        [
-          _c(
-            "el-col",
-            { attrs: { span: 18, offset: 3 } },
+            "el-row",
             [
               _c(
-                "el-tabs",
-                {
-                  model: {
-                    value: _vm.activeName,
-                    callback: function($$v) {
-                      _vm.activeName = $$v
-                    },
-                    expression: "activeName"
-                  }
-                },
+                "el-col",
+                { attrs: { span: 24 } },
+                [
+                  _c("my-page-list", {
+                    attrs: { defaultUser: _vm.user },
+                    on: { "update-mypage": _vm.updateMypage }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 18, offset: 3 } },
                 [
                   _c(
-                    "el-tab-pane",
-                    { attrs: { label: "レビュー", name: "reviews" } },
+                    "el-tabs",
+                    {
+                      model: {
+                        value: _vm.activeName,
+                        callback: function($$v) {
+                          _vm.activeName = $$v
+                        },
+                        expression: "activeName"
+                      }
+                    },
                     [
                       _c(
-                        "div",
-                        {
-                          staticStyle: {
-                            "max-height": "500px",
-                            overflow: "scroll"
-                          }
-                        },
+                        "el-tab-pane",
+                        { attrs: { label: "レビュー", name: "reviews" } },
                         [
                           _c(
-                            "el-card",
-                            {
-                              staticStyle: {
-                                margin: "10px",
-                                "border-radius": "3px"
-                              }
-                            },
-                            [
-                              _c("own-movie-review-component", {
-                                attrs: { reviews: _vm.ownReviews },
-                                on: { like: _vm.like, unlike: _vm.unlike }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-tab-pane",
-                    { attrs: { label: "いいね", name: "second" } },
-                    [
-                      _vm.user
-                        ? _c(
                             "div",
                             {
                               staticStyle: {
@@ -885,11 +872,8 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _c("like-movie-review-component", {
-                                    attrs: {
-                                      likes: _vm.likeReviews,
-                                      userId: _vm.user.id
-                                    },
+                                  _c("own-movie-review-component", {
+                                    attrs: { reviews: _vm.ownReviews },
                                     on: { like: _vm.like, unlike: _vm.unlike }
                                   })
                                 ],
@@ -898,20 +882,65 @@ var render = function() {
                             ],
                             1
                           )
-                        : _vm._e()
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-tab-pane",
-                    { attrs: { label: "Role", name: "third" } },
-                    [_vm._v("Role")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-tab-pane",
-                    { attrs: { label: "Task", name: "fourth" } },
-                    [_vm._v("Task")]
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-tab-pane",
+                        { attrs: { label: "いいね", name: "second" } },
+                        [
+                          _vm.user
+                            ? _c(
+                                "div",
+                                {
+                                  staticStyle: {
+                                    "max-height": "500px",
+                                    overflow: "scroll"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "el-card",
+                                    {
+                                      staticStyle: {
+                                        margin: "10px",
+                                        "border-radius": "3px"
+                                      }
+                                    },
+                                    [
+                                      _c("like-movie-review-component", {
+                                        attrs: {
+                                          likes: _vm.likeReviews,
+                                          userId: _vm.user.id
+                                        },
+                                        on: {
+                                          like: _vm.like,
+                                          unlike: _vm.unlike
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-tab-pane",
+                        { attrs: { label: "Role", name: "third" } },
+                        [_vm._v("Role")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-tab-pane",
+                        { attrs: { label: "Task", name: "fourth" } },
+                        [_vm._v("Task")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
