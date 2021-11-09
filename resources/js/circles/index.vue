@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
 		<create-circle-dialogue
 		  :formVisible="formVisible"
 			@close-form="formVisible = false"
@@ -36,14 +36,17 @@ export default {
 	},
 	data() {
 		return {
+			loading: false,
 			formVisible: false,
 			circles: {},
 		}
 	},
 	methods: {
 		createCircle(postForm) {
+			this.loading = true;
 			axios.post('/circle', postForm)
 				.then((res) => {
+					this.loading = false;
 					this.formVisible = false;
 					this.getCircles;
 				})

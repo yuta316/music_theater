@@ -19,7 +19,12 @@
 						@reject-application="rejectApplication"
 					/>
 				</el-tab-pane>
-				<el-tab-pane label="Role">Role</el-tab-pane>
+				<el-tab-pane label="履歴">
+					<circle-history
+						:histories="circle.histories"
+					>
+					</circle-history>
+				</el-tab-pane>
 				<el-tab-pane label="Task">Task</el-tab-pane>
 			</el-tabs>
 		</el-card>
@@ -27,16 +32,16 @@
 </template>
 
 <script>
-// import createCircleDialogue from './dialogues/createCircleDialogue.vue';
 import circleContent from './components/circleContent.vue';
+import circleHistory from './components/circleHistory.vue'
 import userList from './components/userList.vue'
 import applicationUserList from './components/applicationUserList.vue';
 
 export default {
 	name: 'circleDetail',
 	components: {
-		// createCircleDialogue,
 		circleContent,
+		circleHistory,
 		userList,
 		applicationUserList,
 	},
@@ -44,17 +49,11 @@ export default {
 		return {
 			circleId: this.$route.params.circleId,
 			circle: {},
+			circleHistories: {},
 			loading: false,
 		}
 	},
 	methods: {
-		// createCircle(postForm) {
-		// 	axios.post('/circle', postForm)
-		// 		.then((res) => {
-		// 			this.formVisible = false;
-		// 			this.getCircles;
-		// 		})
-		// },
 		getCircle(){
 			this.loading = true;
 			axios.get('/circle/' + this.circleId)

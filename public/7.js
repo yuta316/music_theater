@@ -206,6 +206,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      loading: false,
       formVisible: false,
       circles: {}
     };
@@ -214,7 +215,9 @@ __webpack_require__.r(__webpack_exports__);
     createCircle: function createCircle(postForm) {
       var _this = this;
 
+      this.loading = true;
       axios.post('/circle', postForm).then(function (res) {
+        _this.loading = false;
         _this.formVisible = false;
         _this.getCircles;
       });
@@ -499,6 +502,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
     [
       _c("create-circle-dialogue", {
         attrs: { formVisible: _vm.formVisible },

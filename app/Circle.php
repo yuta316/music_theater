@@ -17,6 +17,11 @@ class Circle extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function histories()
+    {
+        return $this->hasMany('App\CircleHistory')->with('user');
+    }
+
     public function applicationUsers()
     {
         return $this->belongsToMany('App\User', 'circle_user_status')->withPivot('status');
