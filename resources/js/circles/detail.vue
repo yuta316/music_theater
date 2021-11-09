@@ -8,10 +8,16 @@
 		<el-card>
 			<el-tabs type="border-card">
 				<el-tab-pane label="メンバー">
-
+						<user-list
+							:users="circle.users"
+						/>
 				</el-tab-pane>
-				<el-tab-pane label="Config">
-					{{ circle.users }}
+				<el-tab-pane label="参加申請">
+					<application-user-list
+						:users="circle.application_users"
+						@approve-application="approveApplication"
+						@reject-application="rejectApplication"
+					/>
 				</el-tab-pane>
 				<el-tab-pane label="Role">Role</el-tab-pane>
 				<el-tab-pane label="Task">Task</el-tab-pane>
@@ -23,12 +29,16 @@
 <script>
 // import createCircleDialogue from './dialogues/createCircleDialogue.vue';
 import circleContent from './components/circleContent.vue';
+import userList from './components/userList.vue'
+import applicationUserList from './components/applicationUserList.vue';
 
 export default {
 	name: 'circleDetail',
 	components: {
 		// createCircleDialogue,
 		circleContent,
+		userList,
+		applicationUserList,
 	},
 	data() {
 		return {
@@ -62,7 +72,27 @@ export default {
 						name: 'circlePage'
 					})
 				})
-		}
+		},
+		approveApplication(userId){
+			axios.get(`/circle/${this.circleId}/${userId}/approve`)
+				.then(() => {
+					this.$message({
+						message: 'メンバー追加を承認しました',
+						type: 'success'
+					});
+					this.getCircle();
+				})
+		},
+		rejectApplication(userId){
+			axios.get(`/circle/${this.circleId}/${userId}/reject`)
+				.then(() => {
+					this.$message({
+						message: 'メンバー追加を拒否しました',
+						type: 'success'
+					});
+					this.getCircle();
+				})
+		},
 	},
 	mounted() {
 		this.getCircle();

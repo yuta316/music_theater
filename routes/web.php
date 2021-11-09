@@ -44,7 +44,10 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('circle')->group(function () {
         Route::get('', 'CircleController@index');
+        Route::get('{circle}/{user}/approve', 'CircleController@approve');
+        Route::get('{circle}/{user}/reject', 'CircleController@reject');
         Route::get('{circle}', 'CircleController@show')->middleware('circle.show');
+        Route::post('{circle}/join', 'CircleController@application');
         Route::post('', 'CircleController@store');
     });
 
