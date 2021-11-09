@@ -3,13 +3,13 @@
 		<edit-mypage-dialogue
 			:editDialogVisible="editDialogVisible"
 			:editUser="user"
-			@action="editDialogVisible = false"
 			@update-mypage="updateMypage"
+			@close-form="editDialogVisible = false"
 		></edit-mypage-dialogue>
 
 		<el-row>
-			<el-col :span="16" :offset="8">
-				<el-card style="margin: 10px; border-radius: 3px;">
+			<el-col :span="24" :offset="0">
+				<el-card style="margin: 10px; border-radius: 30px;">
 				<el-descriptions title="マイページ" :column="3" border v-if="user">
 					<template slot="extra">
 						<div v-if="!user.img_path">
